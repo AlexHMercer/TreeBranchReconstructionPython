@@ -8,11 +8,13 @@ from Tree import Tree
     3. 再遍历所有的Branch，若吸附集合不为空，则根据吸附的点，和父节点向量，确定下一个Branch节点的坐标，同时要满足角度约束
     4. 对创建的新节点，根据定义的阈值，将节点周围距离小于阈值的Leaf从总集合中删去，加快下次遍历的速度。
 '''
+
+
 def main():
     base_filename = "test"
     # tree_[index].txt
     for index in range(7, 8):
-        tree = Tree(base_filename, index) # 创建了Tree，并将最底部的点封装为Branch，并令为rootBranch，将所有的点坐标封装为Leaf
+        tree = Tree(base_filename, index)  # 创建了Tree，并将最底部的点封装为Branch，并令为rootBranch，将所有的点坐标封装为Leaf
         tree.run()
 
 
