@@ -7,11 +7,12 @@ sys.setrecursionlimit(9000000)  # 这里设置大一些
 
 
 def main():
-    base_filename = "modelPlot2"
+    # 定义存放结果文件的路径，与要处理的文件个数
+    base_filename = "test"
     target_directory = "../resource/" + base_filename + "_DBH/"
     tree_amount = 187
 
-    for index in range(1, tree_amount):
+    for index in range(7, 8):
         if not os.path.exists(target_directory):
             os.mkdir(target_directory)
 

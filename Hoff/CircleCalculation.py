@@ -19,7 +19,7 @@ class CircleCalculation:
     max_radius = 0.2  # 最大半径
 
     def __init__(self, base_filename, target_directory, index):
-        CircleCalculation.iteration_length = 0
+        CircleCalculation.iteration_length = 0  # 获取对应树的骨架文件和源文件路径
         filename = "../resource/" + base_filename + "_skeleton/tree" + str(index) + "/branches.data"
         original_filename = "../resource/" + base_filename + "/tree_" + str(index) + ".txt"
 
@@ -27,14 +27,14 @@ class CircleCalculation:
         self.base_filename = base_filename
         self.branches = None
         self.index = index
-        self.load_branch_data(filename)
+        self.load_branch_data(filename) # 读取骨架文件
         self.root = None
-        self.load_root_branch()
+        self.load_root_branch() # 读取骨架文件中被标记为root的branch节点
         self.original_data = None
         print("loading original data")
-        self.load_original_data(original_filename)
+        self.load_original_data(original_filename)  # 读取树的原始点云文件
         print("load all needed data")
-        self.create_folders()
+        self.create_folders()   # 创建该棵树的结果文件夹
 
     def create_folders(self):
         tree_folder = self.target_directory + "tree" + str(self.index) + "/"
@@ -70,16 +70,16 @@ class CircleCalculation:
 
     def run(self):
         root = self.root
-        self._out(root, None)
-        self.duplicate_branches_data()
+        self._out(root, None)   # 为该branch节点确定半径
+        self.duplicate_branches_data()  # ？？？？
 
     def _out(self, node: Branch, parent: Branch):
-        CircleCalculation.iteration_length += 1
+        CircleCalculation.iteration_length += 1 # iteration_length用来统计迭代次数
         print("iteration start: ", CircleCalculation.iteration_length)
-        self._circle_calculation(node, parent)
+        self._circle_calculation(node, parent) # 为节点确定半径约束，如果该节点没有父节点（即为根节点），则将半径约束设置为0.2m
         print("iteration end")
 
-        children = node.children
+        children = node.children    # 为当前branch节点的所有子节点添加半径约束，约束长度是父节点的0.99倍
         for child in children:
             self._out(child, node)
 

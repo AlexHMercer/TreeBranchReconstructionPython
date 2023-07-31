@@ -21,8 +21,8 @@ def print_position_radius(target_directory, index):
     out_branches_filename = target_directory + "tree" + str(index) + "/circles" + str(index) + ".txt"
     np.savetxt(out_branches_filename, out, delimiter=",")
 
-    out = empty((0, 8))
-    for branch in branches:
+    out = empty((0, 8)) # 获取每一个branch的半径约束和坐标，和branch对应的子节点的半径约束和坐标
+    for branch in branches: # 每一行前半是父节点，后半是子节点
         children = branch.children
         for child in children:
             line = []
