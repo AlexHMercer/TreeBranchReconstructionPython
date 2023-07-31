@@ -71,7 +71,7 @@ class CircleCalculation:
     def run(self):
         root = self.root
         self._out(root, None)   # 为该branch节点确定半径
-        self.duplicate_branches_data()  # ？？？？
+        self.duplicate_branches_data()  # 把self.branches写入Branches_c.data
 
     def _out(self, node: Branch, parent: Branch):
         CircleCalculation.iteration_length += 1 # iteration_length用来统计迭代次数
